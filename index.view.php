@@ -12,34 +12,36 @@
 <body>
     <h2>Kontaktiere<br><strong>deine digitale Zukunft.</strong></h2>
 
-    <div class="success">
-        Vielen Dank für dein Interesse, NAME.
-        Wir werden uns in Kürze bei dir melden!
-    </div>
+    <?php if ($success) : ?>
+        <div class="success">
+            Vielen Dank für dein Interesse, <?= htmlspecialchars($name) ?>.
+            Wir werden uns in Kürze bei dir melden!
+        </div>
+    <?php else: ?>
+        <form method="POST">
+            <fieldset <?php if ($nameError) echo 'class="error"'; ?>>
+                <label>Name</label>
+                <input type="text" name="name" value="<?= htmlspecialchars($name) ?>">
+                <div class="error-text"><?= $nameError ?></div>
+            </fieldset>
 
-    <form method="POST">
-        <fieldset class="error">
-            <label>Name</label>
-            <input type="text" name="name" value="">
-            <div class="error-text">Hier könnte Ihre Fehlermeldung stehen</div>
-        </fieldset>
+            <fieldset <?php if ($emailError) echo 'class="error"'; ?>>
+                <label>E-Mail-Adresse</label>
+                <input type="text" name="email" value="<?= htmlspecialchars($email) ?>">
+                <div class="error-text"><?= $emailError ?></div>
+            </fieldset>
 
-        <fieldset>
-            <label>E-Mail-Adresse</label>
-            <input type="text" name="email" value="">
-            <div class="error-text">Hier könnte Ihre Fehlermeldung stehen</div>
-        </fieldset>
+            <fieldset <?php if ($messageError) echo 'class="error"'; ?>>
+                <label>Nachricht</label>
+                <textarea name="message" rows="5"><?= htmlspecialchars($message) ?></textarea>
+                <div class="error-text"><?= $messageError ?></div>
+            </fieldset>
 
-        <fieldset>
-            <label>Nachricht</label>
-            <textarea name="message" rows="5"></textarea>
-            <div class="error-text">Hier könnte Ihre Fehlermeldung stehen</div>
-        </fieldset>
-
-        <fieldset>
-            <button>Absenden</button>
-        </fieldset>
-    </form>
+            <fieldset>
+                <button>Absenden</button>
+            </fieldset>
+        </form>
+    <?php endif; ?>
 </body>
 
 </html>
