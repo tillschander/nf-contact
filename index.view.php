@@ -17,6 +17,11 @@
             Vielen Dank für dein Interesse, <?= htmlspecialchars($name) ?>.
             Wir werden uns in Kürze bei dir melden!
         </div>
+    <?php elseif($participated): ?>
+        <div class="success">
+            Vielen Dank für dein Interesse.
+            Leider hast du das Formular schon einmal abgeschickt.
+        </div>
     <?php else: ?>
         <form method="POST">
             <fieldset <?php if ($nameError) echo 'class="error"'; ?>>
